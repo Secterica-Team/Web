@@ -100,13 +100,13 @@ class ApexChart extends Component {
                         offsetX: -65,
                         offsetY: 12,
                         tools: {
-                            download: <img src={require("../info_icon.svg")} width={24} alt="Info"/>,
+                            download: <img src={require("../../archived_images/info_icon.svg")} width={24} alt="Info"/>,
                             selection: true,
                             zoom: true,
                             zoomin: true,
                             zoomout: true,
                             pan: true,
-                            reset: true | <img src={require("../info_icon.svg")} width={24} alt="Info"/>,
+                            reset: true | <img src={require("../../archived_images/info_icon.svg")} width={24} alt="Info"/>,
                             customIcons: []
                         },
                         autoSelected: 'zoom'

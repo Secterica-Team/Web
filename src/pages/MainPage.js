@@ -6,7 +6,7 @@ import LocationContext from '../context/location-context'
 
 
 const myMarker = new Icon({
-    iconUrl: require("../my_marker_location.svg"),
+    iconUrl: require("../../archived_images/my_marker_location.svg"),
     iconSize: [50, 55]
 });
 
