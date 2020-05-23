@@ -66,7 +66,7 @@ class MainPage extends Component {
         } else {
             return (
                 <React.Fragment>
-                    {response && <Map center={[49.21377, 24.03404]} zoom={8}>
+                    {response && <Map center={[48.29149, 25.94034]} zoom={8}>
                         <TileLayer
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
