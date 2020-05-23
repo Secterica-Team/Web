@@ -71,71 +71,460 @@ class MainNavigation extends React.Component {
                 columns: [
                     {
                         title: "PROPERTY",
-                        width: {wch: 30},
-                        style: {fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}}
+                        width: {wch: 13},
+                        style: {
+                            fill: {
+                                patternType: "solid",
+                                fgColor: {rgb: "FFF86B00"}
+                            },
+                            border: {
+                                top: {
+                                    style: 'thin',
+                                    color: "#000000"
+                                },
+                                bottom: {
+                                    style: 'thin',
+                                    color: "#000000"
+                                },
+                                left: {
+                                    style: 'thin',
+                                    color: "#000000"
+                                },
+                                right: {
+                                    style: 'thin',
+                                    color: "#000000"
+                                }
+                            }
+                        }
                     },
                     {
                         title: "VALUE",
-                        width: {wch: 20},
-                        style: {fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}}
+                        width: {wch: 13},
+                        style: {
+                            fill: {
+                                patternType: "solid",
+                                fgColor: {rgb: "FFF86B00"}
+                            },
+                            border: {
+                                top: {
+                                    style: 'thin',
+                                    color: "#000000"
+                                },
+                                bottom: {
+                                    style: 'thin',
+                                    color: "#000000"
+                                },
+                                left: {
+                                    style: 'thin',
+                                    color: "#000000"
+                                },
+                                right: {
+                                    style: 'thin',
+                                    color: "#000000"
+                                }
+                            }
+                        }
                     },
                 ],
                 data: [
                     [
                         {
                             value: "Temperature",
-                            style: {font: {sz: "10.5", bold: true}},
+                            style: {
+                                font: {
+                                    sz: "10.5",
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                }
+                            },
                             fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
                         },
-                        {value: temperature ? temperature.toString() : "0", style: {font: {bold: true}}},
+                        {
+                            value: temperature,
+                            style: {
+                                font: {
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                },
+                                numFmt: "0.0 °С"
+                            }
+                        },
                     ],
                     [
                         {
                             value: "Humidity",
-                            style: {font: {sz: "10.5", bold: true}},
+                            style: {
+                                font: {
+                                    sz: "10.5",
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                }
+                            },
                             fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
                         },
-                        {value: humidity ? humidity.toString() : "0", style: {font: {bold: true}}}
+                        {
+                            value: humidity,
+                            style: {
+                                font: {
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                },
+                                numFmt: "0.00\\%"
+                            }
+                        }
                     ],
                     [
                         {
                             value: "Dust",
-                            style: {font: {sz: "10.5", bold: true}},
+                            style: {
+                                font: {
+                                    sz: "10.5",
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                }
+                            },
                             fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
                         },
-                        {value: dust ? dust.toString() : "0", style: {font: {bold: true}}}
+                        {
+                            value: dust,
+                            style: {
+                                font: {
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                },
+                                numFmt: "0.00 \\ μ\\g\\/\\m3"
+                            }
+                        }
                     ],
                     [
                         {
                             value: "Smoke",
-                            style: {font: {sz: "10.5", bold: true}},
+                            style: {
+                                font: {
+                                    sz: "10.5",
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                }
+                            },
                             fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
                         },
-                        {value: smoke ? smoke.toString() : "0", style: {font: {bold: true}}}
+                        {
+                            value: smoke,
+                            style: {
+                                font: {
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                },
+                                numFmt: "0.00 \\ μ\\g\\/\\m3"
+                            }
+                        }
                     ],
                     [
                         {
                             value: "CO",
-                            style: {font: {sz: "10.5", bold: true}},
+                            style: {
+                                font: {
+                                    sz: "10.5",
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                }
+                            },
                             fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
                         },
-                        {value: co ? co.toString() : "0", style: {font: {bold: true}}}
+                        {
+                            value: co,
+                            style: {
+                                font: {
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                },
+                                numFmt: "0.00 \\ μ\\g\\/\\m3"
+                            }
+                        }
                     ],
                     [
                         {
                             value: "CO2",
-                            style: {font: {sz: "10.5", bold: true}},
+                            style: {
+                                font: {
+                                    sz: "10.5",
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                }
+                            },
                             fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
                         },
-                        {value: co2 ? co2.toString() : "0", style: {font: {bold: true}}}
+                        {
+                            value: co2,
+                            style: {
+                                font: {
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                },
+                                numFmt: "0.00 \\ μ\\g\\/\\m3"
+                            }
+                        }
                     ],
                     [
                         {
                             value: "LPG",
-                            style: {font: {sz: "10.5", bold: true}},
+                            style: {
+                                font: {
+                                    sz: "10.5",
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                }
+                            },
                             fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
                         },
-                        {value: lpg ? lpg.toString() : "0",  style: {font: {bold: true}}}
+                        {
+                            value: lpg,
+                            style: {
+                                font: {
+                                    bold: false
+                                },
+                                border: {
+                                    top: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    bottom: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    left: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    },
+                                    right: {
+                                        style: 'thin',
+                                        color: "#000000"
+                                    }
+                                },
+                                numFmt: "0.00 \\ μ\\g\\/\\m3"
+                            }
+                        }
                     ]
                 ]
             }
