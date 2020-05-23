@@ -3,8 +3,6 @@ import ReactApexChart from "react-apexcharts"
 import LocationContext from '../context/location-context';
 import Recharts from "./Rechart";
 import "./Circle.css";
-import {Icon, InlineIcon} from '@iconify/react';
-import infoOutline from '@iconify/icons-eva/info-outline';
 
 
 class ApexChart extends Component {
