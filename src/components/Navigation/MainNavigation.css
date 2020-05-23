@@ -33,7 +33,15 @@
     margin: 0 1rem;
 }
 
-.main-navigation__item a,
+.main-navigation__item a {
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 1.25rem;
+    color: #5F7B88;
+    text-align: center;
+}
+
 .main-navigation__item button {
     text-decoration: none;
     background: #0F1521;
@@ -51,6 +59,7 @@
     cursor: pointer;
     vertical-align: middle;
     text-align: center;
+    outline:none;
 }
 
 .main-navigation__item a:hover,
