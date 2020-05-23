@@ -16,6 +16,7 @@
     "react": "^16.13.1",
     "react-apexcharts": "^1.3.7",
     "react-csv": "^2.0.3",
+    "react-data-export": "^0.6.0",
     "react-dom": "^16.13.1",
     "react-export-excel": "^0.5.3",
     "react-html-table-to-excel": "^2.0.0",
