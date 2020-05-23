@@ -4,7 +4,11 @@ import LocationContext from '../../context/location-context';
 import './MainNavigation.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import Workbook from 'react-xlsx-workbook'
+import ReactExport from 'react-data-export';
+
+const ExcelFile = ReactExport.ExcelFile;
+const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 
 class MainNavigation extends React.Component {
@@ -62,6 +66,80 @@ class MainNavigation extends React.Component {
 
     render() {
         const {error, isLoaded, temperature, humidity, dust, smoke, co, co2, lpg} = this.state;
+        const multiDataSet = [
+            {
+                columns: [
+                    {
+                        title: "PROPERTY",
+                        width: {wch: 30},
+                        style: {fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}}
+                    },
+                    {
+                        title: "VALUE",
+                        width: {wch: 20},
+                        style: {fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}}
+                    },
+                ],
+                data: [
+                    [
+                        {
+                            value: "Temperature",
+                            style: {font: {sz: "10.5", bold: true}},
+                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                        },
+                        {value: temperature ? temperature.toString() : "0", style: {font: {bold: true}}},
+                    ],
+                    [
+                        {
+                            value: "Humidity",
+                            style: {font: {sz: "10.5", bold: true}},
+                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                        },
+                        {value: humidity ? humidity.toString() : "0", style: {font: {bold: true}}}
+                    ],
+                    [
+                        {
+                            value: "Dust",
+                            style: {font: {sz: "10.5", bold: true}},
+                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                        },
+                        {value: dust ? dust.toString() : "0", style: {font: {bold: true}}}
+                    ],
+                    [
+                        {
+                            value: "Smoke",
+                            style: {font: {sz: "10.5", bold: true}},
+                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                        },
+                        {value: smoke ? smoke.toString() : "0", style: {font: {bold: true}}}
+                    ],
+                    [
+                        {
+                            value: "CO",
+                            style: {font: {sz: "10.5", bold: true}},
+                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                        },
+                        {value: co ? co.toString() : "0", style: {font: {bold: true}}}
+                    ],
+                    [
+                        {
+                            value: "CO2",
+                            style: {font: {sz: "10.5", bold: true}},
+                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                        },
+                        {value: co2 ? co2.toString() : "0", style: {font: {bold: true}}}
+                    ],
+                    [
+                        {
+                            value: "LPG",
+                            style: {font: {sz: "10.5", bold: true}},
+                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                        },
+                        {value: lpg ? lpg.toString() : "0",  style: {font: {bold: true}}}
+                    ]
+                ]
+            }
+        ];
         if (error) {
             return <div>Oops..something went wrong: {error.message}</div>;
         } else if (!isLoaded) {
@@ -103,46 +181,14 @@ class MainNavigation extends React.Component {
                                             </button>
                                         </li>}
                                         {context.currentLocation && <li>
-                                            <Workbook filename="metadata.xlsx"
-                                                      element={<button type="button" onClick={() => {
-                                                          this.setState({
-                                                              location: localStorage.getItem("currentLocationId")
-                                                          })
-                                                      }}>Convert To Excel</button>}>
-                                                <Workbook.Sheet data={[
-                                                    {
-                                                        name: "temperature",
-                                                        value: temperature ? temperature : "0"
-                                                    },
-                                                    {
-                                                        name: "humidity",
-                                                        value: humidity ? humidity : "0"
-                                                    },
-                                                    {
-                                                        name: "dust",
-                                                        value: dust ? dust : "0"
-                                                    },
-                                                    {
-                                                        name: "smoke",
-                                                        value: smoke ? smoke: "0"
-                                                    },
-                                                    {
-                                                        name: "co",
-                                                        value: co ? co: "0"
-                                                    },
-                                                    {
-                                                        name: "co2",
-                                                        value: co2 ? co2: "0"
-                                                    },
-                                                    {
-                                                        name: "lpg",
-                                                        value: lpg ? lpg: "0"
-                                                    }
-                                                ]} name="Sheet A">
-                                                    <Workbook.Column label="Name" value="name"/>
-                                                    <Workbook.Column label="Value" value="value"/>
-                                                </Workbook.Sheet>
-                                            </Workbook>
+                                            <ExcelFile filename="metadata"
+                                                       element={<button type="button" onClick={() => {
+                                                           this.setState({
+                                                               location: localStorage.getItem("currentLocationId")
+                                                           })
+                                                       }}>Convert To Excel</button>}>
+                                                <ExcelSheet dataSet={multiDataSet} name="Metadata"/>
+                                            </ExcelFile>
                                         </li>}
                                     </ul>
                                 </nav>
