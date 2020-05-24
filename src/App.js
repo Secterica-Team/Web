@@ -5,6 +5,7 @@ import MainPage from './pages/MainPage';
 import Location from './pages/Location';
 import MainNavigation from './components/Navigation/MainNavigation';
 import LocationContext from './context/location-context';
+import SideDrawer from "./components/SideDrawer/SideDrawer";
 
 class App extends React.Component {
     state = {
@@ -67,14 +68,17 @@ class App extends React.Component {
                             putCurrentLocation: this.putCurrentLocation,
                             putCurrentMetadata: this.putCurrentMetadata
                         }}>
-                        <MainNavigation/>
-                        <main className="main-content">
-                            <Switch>
-                                <Redirect from="/" to="/main" exact/>
-                                <Route path="/main" component={MainPage}/>
-                                <Route path="/location" component={Location}/>
-                            </Switch>
-                        </main>
+                        <div style={{height: '100%'}}>
+                            <MainNavigation/>
+                            <SideDrawer/>
+                            <main className="main-content">
+                                <Switch>
+                                    <Redirect from="/" to="/main" exact/>
+                                    <Route path="/main" component={MainPage}/>
+                                    <Route path="/location" component={Location}/>
+                                </Switch>
+                            </main>
+                        </div>
                     </LocationContext.Provider>
                 </React.Fragment>
             </BrowserRouter>
