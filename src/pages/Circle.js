@@ -9,7 +9,7 @@ class ApexChart extends Component {
     static contextType = LocationContext;
     _isMounted = false;
 
-    componentDidMount() {
+    componentWillMount() {
         this._isMounted = true;
         fetch(`http://heysmellproject-env.eba-uctmjbw3.us-east-2.elasticbeanstalk.com/air-quality/last_day?location=${encodeURIComponent(this.context.locationId)}`)
             .then(res => res.json())
@@ -63,16 +63,16 @@ class ApexChart extends Component {
 
     constructor(props) {
         super(props);
-        const offsetY = 0;
+        let offsetY = 0;
         const max = this.props.max;
         const nameOfProperty = this.props.name;
         const value = this.props.value;
         this.showChartHandler = this.showChartHandler.bind(this);
         let value_in_percent = value;
         if (this.props.label === "") {
-            this.offsetY = -10;
+            offsetY = -10;
         } else {
-            this.offsetY = 2;
+            offsetY = 2;
         }
 
         function valueToPercent(value) {
@@ -185,7 +185,7 @@ class ApexChart extends Component {
                                 color: '#5F7B88',
                                 fontSize: '18px',
                                 show: true,
-                                offsetY: this.offsetY
+                                offsetY: offsetY
                             }
                         }
                     }
@@ -224,7 +224,6 @@ class ApexChart extends Component {
                     <ReactApexChart className="circle" onMouseEnter={() => {
                         this.state.response &&
                         this.showChartHandler();
-                        this.setState({showChart: true})
                     }} onMouseLeave={() => {
                         this.setState({showChart: false})
                     }} options={this.state.options} series={this.state.series} type="radialBar"
