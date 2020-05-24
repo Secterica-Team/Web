@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import LocationContext from '../context/location-context';
 import "./Metadata.css";
 import "./Rechart";
 import ApexChart from "./Circle";
@@ -29,7 +28,6 @@ const gradients = {
 };
 
 class MetadataWindow extends Component {
-    static contextType = LocationContext;
 
     setTemperatureColor = (value) => {
         if (value <= 11) {
@@ -152,58 +150,58 @@ class MetadataWindow extends Component {
                 <div className="my_window">
                     <div className="time">
                         <h1 className="header">Last updated:</h1>
-                        <h1 className="tab">{this.context.currentDayMetadataTime}</h1>
+                        <h1 className="tab">{this.props.time}</h1>
                     </div>
                     <div className="data">
                         <h1 className="header">Temperature</h1>
-                        <ApexChart className="chart" value={localStorage.getItem("temperature")} label="°C" max={50}
+                        <ApexChart className="chart" value={this.props.dayData.tmp} label="°C" max={50}
                                    name={"temperature"}
-                                   color={this.setTemperatureColor(localStorage.getItem("temperature"))}
-                                   gradient={this.setTemperatureGradient(localStorage.getItem("temperature"))}/>
+                                   color={this.setTemperatureColor(this.props.dayData.tmp)}
+                                   gradient={this.setTemperatureGradient(this.props.dayData.tmp)}/>
                     </div>
                     <div className="data">
                         <h1 className="header">Humidity</h1>
-                        <ApexChart className="chart" value={localStorage.getItem("humidity")} label="%" max={100}
+                        <ApexChart className="chart" value={this.props.dayData.hum} label="%" max={100}
                                    name={"humidity"}
-                                   color={this.setHumidityColor(localStorage.getItem("humidity"))}
-                                   gradient={this.setHumidityGradient(localStorage.getItem("humidity"))}
+                                   color={this.setHumidityColor(this.props.dayData.hum)}
+                                   gradient={this.setHumidityGradient(this.props.dayData.hum)}
                         />
                     </div>
                     <div className="data">
                         <h1 className="header">Dust</h1>
-                        <ApexChart className="chart" value={localStorage.getItem("dust")} label="μg/m3" max={500.4}
+                        <ApexChart className="chart" value={this.props.dayData.dus} label="μg/m3" max={500.4}
                                    name={"dust"}
-                                   color={this.setDustColor(localStorage.getItem("dust"))}
-                                   gradient={this.setDustGradient(localStorage.getItem("dust"))}/>
+                                   color={this.setDustColor(this.props.dayData.dus)}
+                                   gradient={this.setDustGradient(this.props.dayData.dus)}/>
                     </div>
                     <div className="data">
                         <h1 className="header">Smoke</h1>
-                        <ApexChart className="chart" value={localStorage.getItem("smoke")} label="μg/m3" max={30}
+                        <ApexChart className="chart" value={this.props.dayData.smk} label="μg/m3" max={30}
                                    name={"smoke"}
-                                   color={this.setCOColor(localStorage.getItem("smoke"))}
-                                   gradient={this.setCOGradient(localStorage.getItem("smoke"))}/>
+                                   color={this.setCOColor(this.props.dayData.smk)}
+                                   gradient={this.setCOGradient(this.props.dayData.smk)}/>
                     </div>
                     <div className="data">
                         <h1 className="header">CO</h1>
-                        <ApexChart className="chart" value={localStorage.getItem("co")} label="μg/m3" max={50.3}
+                        <ApexChart className="chart" value={this.props.dayData.co} label="μg/m3" max={50.3}
                                    name={"co"}
-                                   color={this.setCOColor(localStorage.getItem("co"))}
-                                   gradient={this.setCOGradient(localStorage.getItem("co"))}/>
+                                   color={this.setCOColor(this.props.dayData.co)}
+                                   gradient={this.setCOGradient(this.props.dayData.co)}/>
                     </div>
                     <div className="data">
                         <h1 className="header">CO<sub>2</sub></h1>
-                        <ApexChart className="chart" value={localStorage.getItem("co2")} label="μg/m3" max={1300}
+                        <ApexChart className="chart" value={this.props.dayData.co2} label="μg/m3" max={1300}
                                    name={"co2"}
-                                   color={this.setCO2Color(localStorage.getItem("co2"))}
-                                   gradient={this.setCO2Gradient(localStorage.getItem("co2"))}
+                                   color={this.setCO2Color(this.props.dayData.co2)}
+                                   gradient={this.setCO2Gradient(this.props.dayData.co2)}
                         />
                     </div>
                     <div className="last_element">
                         <h1 className="header"> LPG </h1>
-                        <ApexChart className="chart" value={localStorage.getItem("lpg")} label="μg/m3" max={100}
+                        <ApexChart className="chart" value={this.props.dayData.lpg} label="μg/m3" max={100}
                                    name={"lpg"}
-                                   color={this.setCOColor(localStorage.getItem("lpg"))}
-                                   gradient={this.setCOGradient(localStorage.getItem("lpg"))}/>
+                                   color={this.setCOColor(this.props.dayData.lpg)}
+                                   gradient={this.setCOGradient(this.props.dayData.lpg)}/>
                     </div>
                 </div>
             </React.Fragment>
