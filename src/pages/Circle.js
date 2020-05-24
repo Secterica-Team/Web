@@ -104,7 +104,8 @@ class ApexChart extends Component {
                             zoomin: true,
                             zoomout: true,
                             pan: true,
-                            reset: true | <img src={require("../archived_images/info_icon.svg")} width={24} alt="Info"/>,
+                            reset: true |
+                                <img src={require("../archived_images/info_icon.svg")} width={24} alt="Info"/>,
                             customIcons: []
                         },
                         autoSelected: 'zoom'
@@ -126,15 +127,15 @@ class ApexChart extends Component {
                         }
                     },
                     events: {
-                        dataPointMouseEnter: () => {
-                            this.state.response &&
-                            this.showChartHandler();
-                        },
-                        dataPointMouseLeave: () => {
-                            this.setState({
-                                showChart: false
-                            })
-                        }
+                        // dataPointMouseEnter: () => {
+                        //     this.state.response &&
+                        //     this.showChartHandler();
+                        // },
+                        // dataPointMouseLeave: () => {
+                        //     this.setState({
+                        //         showChart: false
+                        //     })
+                        // }
                     }
                 },
                 plotOptions: {
@@ -220,7 +221,13 @@ class ApexChart extends Component {
         return (
             <div id="card">
                 <div id="chart">
-                    <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar"
+                    <ReactApexChart className="circle" onMouseEnter={() => {
+                        this.state.response &&
+                        this.showChartHandler();
+                        this.setState({showChart: true})
+                    }} onMouseLeave={() => {
+                        this.setState({showChart: false})
+                    }} options={this.state.options} series={this.state.series} type="radialBar"
                                     height={this.state.options.chart.height}/>
                     {showChart && <Recharts data={this.state.data} name={this.state.nameOfProperty}
                                             showChart={this.state.showChart}/>}
