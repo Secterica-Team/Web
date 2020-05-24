@@ -5,6 +5,7 @@ import './MainNavigation.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import ReactExport from 'react-data-export';
+import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -539,6 +540,9 @@ class MainNavigation extends React.Component {
                     {(context) => {
                         return (
                             <header className="main-navigation">
+                                <div>
+                                    <DrawerToggleButton />
+                                </div>
                                 <div className="main-navigation__logo">
                                     <NavLink to="/main">
                                         <img src={require('../../Logo.svg')} alt="Logo"/>
