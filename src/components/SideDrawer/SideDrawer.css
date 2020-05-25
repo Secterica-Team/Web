@@ -38,11 +38,32 @@
     text-align: center;
 }
 
+.triangle__icon {
+    margin-right: 10%;
+    cursor: pointer;
+    color: rgba(166,179,185,0.35);
+}
 .icon {
-    margin-left: 1.5rem;
+    margin-left: 1vw;
     margin-right: 0;
     cursor: pointer;
     color: rgba(166,179,185,0.35);
+}
+
+.locationName{
+    background: rgb(15, 21, 33);
+    width: 100%;
+    height: 60px;
+    display: inline-block;
+}
+
+.locationName h2{
+    color: #5F7B88;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    text-align: center;
+    font-size: 20px;
+    margin: auto;
 }
 
 .buttonExcel {
@@ -79,12 +100,29 @@
     outline:none;
 }
 
-.drawer li:hover,
-.drawer li:active {
+.buttonChooseStation{
+    margin: 0 0 0 0.3rem;
+    text-decoration: none;
+    background: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    height: 60px;
+    font-size: 20px;
+    color: #5F7B88;
+    border: none;
+    /*padding: 0.25rem 1rem;*/
+    cursor: pointer;
+    vertical-align: middle;
+    text-align: center;
+    outline:none;
+}
+
+.list:hover,
+.list:active {
     background: rgba(95, 123, 136, 0.11)
 }
 
-.drawer li:hover .icon {
+.list:hover .icon, .triangle__icon {
     color: rgba(166, 179, 185, 0.65)
 }
 
