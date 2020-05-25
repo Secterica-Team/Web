@@ -3,5 +3,6 @@
     height: 85vh;
     position: absolute;
     top: 7rem;
+    z-index: 0;
 }
 
