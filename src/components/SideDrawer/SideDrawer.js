@@ -1,6 +1,5 @@
 import React from 'react';
 import './SideDrawer.css';
-import {NavLink} from 'react-router-dom';
 import LocationContext from '../../context/location-context';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -8,6 +7,8 @@ import ReactExport from 'react-data-export';
 import { Icon, InlineIcon } from '@iconify/react';
 import fileExcelOutlined from '@iconify/icons-ant-design/file-excel-outlined';
 import filePdfOutlined from '@iconify/icons-ant-design/file-pdf-outlined';
+import searchFill from '@iconify/icons-eva/search-fill';
+import triangleDown from '@iconify/icons-octicon/triangle-down';
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -559,10 +560,20 @@ class SideDrawer extends React.Component {
                     return (
                         <nav className={drawerClasses}>
                             <ul>
-                                {!context.locationId && <li>
-                                    <button type="button">Choose your station</button>
+                                <li className="location__icon">
+                                    <div style={{margin: 'auto', marginTop: '1rem'}}>
+                                        <img width={40} height={50} src={require('../../mitka.svg')} alt="Location"/>
+                                    </div>
+                                </li>
+                                {!context.locationId && <li className="list">
+                                    <Icon className="icon" icon={searchFill} style={{fontSize: '33px'}} />
+                                    <button className="buttonChooseStation" type="button">Choose your station</button>
+                                    <Icon className="triangle__icon" icon={triangleDown} style={{fontSize: '16px'}} />
                                 </li>}
-                                {context.locationId && <li>
+                                {context.locationId && <li className="list">
+                                    <div className="locationName"><h2>{context.locationName}</h2></div>
+                                </li>}
+                                {context.locationId && <li className="list">
                                     <Icon className="icon" icon={filePdfOutlined} style={{fontSize: '33px'}} />
                                     <button id="buttonId" className="buttonPDF" type="button" onClick={() => {
                                         const input = document.getElementById("root");
@@ -583,7 +594,7 @@ class SideDrawer extends React.Component {
                                     }}>Convert to PDF
                                     </button>
                                 </li>}
-                                {context.locationId && <li>
+                                {context.locationId && <li className="list">
                                     <Icon className="icon" icon={fileExcelOutlined} style={{fontSize: '33px'}} />
                                     {!this.state.isLoaded && this.exportToExcelHandler()}
                                     <ExcelFile filename="metadata"
