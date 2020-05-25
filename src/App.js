@@ -6,71 +6,54 @@ import Location from './pages/Location';
 import MainNavigation from './components/Navigation/MainNavigation';
 import LocationContext from './context/location-context';
 import SideDrawer from "./components/SideDrawer/SideDrawer";
+import Backdrop from "./components/Backdrop/Backdrop";
 
 class App extends React.Component {
     state = {
-        currentLocation: null,
         locationId: null,
         locationName: null,
         locationLatitude: null,
         locationLongitude: null,
-        currentDayMetadataCO: null,
-        currentDayMetadataCO2: null,
-        currentDayMetadataDust: null,
-        currentDayMetadataHumidity: null,
-        currentDayMetadataTemperature: null,
-        currentDayMetadataSmoke: null,
-        currentDayMetadataLPQ: null,
-        currentDayMetadataTime: null
+        sideDrawerOpen: false
     };
 
-    putCurrentLocation = (currentLocation, locationId, locationName, locationLatitude, locationLongitude) => {
+    putCurrentLocation = (locationId, locationName, locationLatitude, locationLongitude) => {
         this.setState({
-            currentLocation: currentLocation,
             locationId: locationId,
             locationName: locationName,
             locationLatitude: locationLatitude,
             locationLongitude: locationLongitude
         });
     };
-    putCurrentMetadata = (currentDayMetadataCO, currentDayMetadataCO2, currentDayMetadataDust, currentDayMetadataHumidity, currentDayMetadataTemperature, currentDayMetadataSmoke, currentDayMetadataLPQ, currentDayMetadataTime) => {
-        this.setState({
-            currentDayMetadataCO: currentDayMetadataCO,
-            currentDayMetadataCO2: currentDayMetadataCO2,
-            currentDayMetadataDust: currentDayMetadataDust,
-            currentDayMetadataHumidity: currentDayMetadataHumidity,
-            currentDayMetadataTemperature: currentDayMetadataTemperature,
-            currentDayMetadataSmoke: currentDayMetadataSmoke,
-            currentDayMetadataLPQ: currentDayMetadataLPQ,
-            currentDayMetadataTime: currentDayMetadataTime
-        });
+    drawerToggleClickHandler = () => {
+       this.setState((prevState) => {
+           return {sideDrawerOpen: !prevState.sideDrawerOpen};
+       })
     };
-
+    backdropClickHandler = () => {
+        this.setState({sideDrawerOpen: false});
+    };
     render() {
+        let backdrop;
+
+        if(this.state.sideDrawerOpen) {
+            backdrop = <Backdrop click={this.backdropClickHandler}/>;
+        }
         return (
             <BrowserRouter>
                 <React.Fragment>
                     <LocationContext.Provider
                         value={{
-                            currentLocation: this.state.currentLocation,
                             locationId: this.state.locationId,
                             locationName: this.state.locationName,
                             locationLatitude: this.state.locationLatitude,
                             locationLongitude: this.state.locationLongitude,
-                            currentDayMetadataCO: this.state.currentDayMetadataCO,
-                            currentDayMetadataCO2: this.state.currentDayMetadataCO2,
-                            currentDayMetadataDust: this.state.currentDayMetadataDust,
-                            currentDayMetadataHumidity: this.state.currentDayMetadataHumidity,
-                            currentDayMetadataTemperature: this.state.currentDayMetadataTemperature,
-                            currentDayMetadataSmoke: this.state.currentDayMetadataSmoke,
-                            currentDayMetadataLPQ: this.state.currentDayMetadataLPQ,
-                            currentDayMetadataTime: this.state.currentDayMetadataTime,
-                            putCurrentLocation: this.putCurrentLocation,
-                            putCurrentMetadata: this.putCurrentMetadata
+                            putCurrentLocation: this.putCurrentLocation
                         }}>
                         <div style={{height: '100%'}}>
-                            <MainNavigation/>
-                            <SideDrawer/>
+                            <MainNavigation drawerClickHandler={this.drawerToggleClickHandler}/>
+                            <SideDrawer show={this.state.sideDrawerOpen}/>
+                            {backdrop}
                             <main className="main-content">
                                 <Switch>
                                     <Redirect from="/" to="/main" exact/>
