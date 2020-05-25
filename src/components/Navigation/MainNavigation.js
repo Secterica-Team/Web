@@ -6,7 +6,6 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import ReactExport from 'react-data-export';
 import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
-import {nullableTypeAnnotation} from "@babel/types";
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
