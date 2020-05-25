@@ -1,12 +1,12 @@
 .side-drawer{
     height: 100%;
-    background: white;
+    background: #0F1521;
     box-shadow: 1px 0 7px rgba(0,0,0,0.5);
     position: fixed;
     top: 0;
     left: 0;
     width: 70%;
-    max-width: 400px;
+    max-width: 350px;
     z-index: 200;
     transform: translate(-100%);
     transition: transform 0.3s ease-out;
@@ -14,6 +14,78 @@
 
 .side-drawer.open{
     transform: translateX(0);
+}
+
+.drawer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.drawer li {
+    display: flex;
+    align-items: center;
+    background: #0F1521;
+}
+
+.drawer a {
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    color: #5F7B88;
+    text-align: center;
+}
+
+.icon {
+    margin-left: 1.5rem;
+    margin-right: 0;
+    cursor: pointer;
+    color: rgba(166,179,185,0.35);
+}
+
+.buttonExcel {
+    margin: 0 0 0 0.3rem;
+    text-decoration: none;
+    background: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    height: 60px;
+    font-size: 20px;
+    color: #5F7B88;
+    border: none;
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+    vertical-align: middle;
+    text-align: center;
+    outline:none;
+}
+
+.buttonPDF{
+    margin: 0 0 0 0.3rem;
+    text-decoration: none;
+    background: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    height: 60px;
+    font-size: 20px;
+    color: #5F7B88;
+    border: none;
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+    vertical-align: middle;
+    text-align: center;
+    outline:none;
+}
+
+.drawer li:hover,
+.drawer li:active {
+    background: rgba(95, 123, 136, 0.11)
+}
+
+.drawer li:hover .icon {
+    color: rgba(166, 179, 185, 0.65)
 }
 
 @media (min-width: 820px) {
