@@ -25,9 +25,10 @@ class MainPage extends Component {
 
     static contextType = LocationContext;
 
-    componentDidMount() {
+    componentWillMount() {
         this._isMounted = true;
-        this.context.putCurrentLocation(null, null);
+        localStorage.clear();
+        this.context.putCurrentLocation(null, null, null, null);
         fetch("http://heysmellproject-env.eba-uctmjbw3.us-east-2.elasticbeanstalk.com/air-quality/locations")
             .then(res => res.json())
             .then(
@@ -93,13 +94,12 @@ class MainPage extends Component {
                                     this.setState({
                                         activeLocation: location
                                     });
-                                    this.handleClick();
-                                    this.context.putCurrentLocation(location, location.id, location.name, location.latitude, location.longitude);
-                                    localStorage.setItem('currentLocation', location);
                                     localStorage.setItem('currentLocationId', location.id);
                                     localStorage.setItem('currentLocationName', location.name);
                                     localStorage.setItem('currentLocationLatitude', location.latitude);
                                     localStorage.setItem('currentLocationLongitude', location.longitude);
+                                    this.context.putCurrentLocation(location.id, location.name, location.latitude, location.longitude);
+                                    this.handleClick();
                                 }}
                                 icon={myMarker}
                             />

@@ -56,15 +56,14 @@ class Location extends Component {
         }
     };
 
-    componentDidMount() {
+    componentWillMount() {
         this._isMounted = true;
         let currentComponent = this;
-        const currentLocationToDisplay = localStorage.getItem('currentLocation');
         const currentLocationToDisplayId = localStorage.getItem('currentLocationId');
         const currentLocationToDisplayName = localStorage.getItem('currentLocationName');
         const currentLocationToDisplayLatitude = localStorage.getItem('currentLocationLatitude');
         const currentLocationToDisplayLongitude = localStorage.getItem('currentLocationLongitude');
-        this.context.putCurrentLocation(currentLocationToDisplay, currentLocationToDisplayId, currentLocationToDisplayName, currentLocationToDisplayLatitude, currentLocationToDisplayLongitude);
+        this.context.putCurrentLocation(currentLocationToDisplayId, currentLocationToDisplayName, currentLocationToDisplayLatitude, currentLocationToDisplayLongitude);
         fetch(`http://heysmellproject-env.eba-uctmjbw3.us-east-2.elasticbeanstalk.com/air-quality/last_day?location=${encodeURIComponent(currentLocationToDisplayId)}`)
             .then(res => (res.ok ? res : Promise.reject(res)))
             .then(res => res.json())
@@ -79,25 +78,6 @@ class Location extends Component {
                             response: true
                         });
                     }
-                    console.log(this.state.currentDayMetaData);
-                    localStorage.setItem('currentDayMetaData', this.state.currentDayMetaData);
-                    localStorage.setItem('co', this.state.currentDayMetaData.co);
-                    localStorage.setItem('co2', this.state.currentDayMetaData.co2);
-                    localStorage.setItem('dust', this.state.currentDayMetaData.dus.toFixed(2));
-                    localStorage.setItem('humidity', this.state.currentDayMetaData.hum);
-                    localStorage.setItem('temperature', this.state.currentDayMetaData.tmp);
-                    localStorage.setItem('smoke', this.state.currentDayMetaData.smk);
-                    localStorage.setItem('lpg', this.state.currentDayMetaData.lpg);
-                    // localStorage.setItem('time', this.state.dateTime[1]);
-                    this.context.putCurrentMetadata(
-                        this.state.currentDayMetaData.co,
-                        this.state.currentDayMetaData.co2,
-                        this.state.currentDayMetaData.dus,
-                        this.state.currentDayMetaData.hum,
-                        this.state.currentDayMetaData.tmp,
-                        this.state.currentDayMetaData.smk,
-                        this.state.currentDayMetaData.lpg,
-                        this.state.dateTime[1]);
                 },
                 (error) => {
                     this.setState({
@@ -166,7 +146,7 @@ class Location extends Component {
                                 </div>
                             </Popup>)}
                         </Map>
-                        <MetadataWindow/>
+                        <MetadataWindow dayData={this.state.currentDayMetaData} time={this.state.dateTime[1]}/>
                     </div>
                 </React.Fragment>
             );
