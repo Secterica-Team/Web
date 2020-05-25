@@ -6,6 +6,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import ReactExport from 'react-data-export';
 import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
+import {nullableTypeAnnotation} from "@babel/types";
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -27,10 +28,7 @@ class MainNavigation extends React.Component {
             smoke: null,
             co: null,
             co2: null,
-            lpg: null,
-            clicked: false,
-            loadedData: false,
-            multiDataSet: []
+            lpg: null
         };
     }
 
@@ -48,7 +46,6 @@ class MainNavigation extends React.Component {
             .then(
                 (result) => {
                     this.setState({
-                        isLoaded: true,
                         temperature: result[result.length - 1].tmp,
                         humidity: result[result.length - 1].hum,
                         dust: result[result.length - 1].dus,
@@ -56,7 +53,7 @@ class MainNavigation extends React.Component {
                         co: result[result.length - 1].co,
                         co2: result[result.length - 1].co2,
                         lpg: result[result.length - 1].lpg,
-                        loadedData: true
+                        isLoaded: true
                     });
                 },
                 (error) => {
@@ -69,8 +66,10 @@ class MainNavigation extends React.Component {
     };
 
     render() {
-        const {error, isLoaded, temperature, humidity, dust, smoke, co, co2, lpg} = this.state;
-        let multiDataSet = [
+        const sleep = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+        };
+        let multiDataSet=[
             {
                 columns: [
                     {
@@ -158,10 +157,13 @@ class MainNavigation extends React.Component {
                                     }
                                 }
                             },
-                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                            fill: {
+                                patternType: "solid",
+                                fgColor: {rgb: "FFF86B00"}
+                            }
                         },
                         {
-                            value: temperature,
+                            value: this.state.temperature,
                             style: {
                                 font: {
                                     bold: false
@@ -215,10 +217,13 @@ class MainNavigation extends React.Component {
                                     }
                                 }
                             },
-                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                            fill: {
+                                patternType: "solid",
+                                fgColor: {rgb: "FFF86B00"}
+                            }
                         },
                         {
-                            value: humidity,
+                            value: this.state.humidity,
                             style: {
                                 font: {
                                     bold: false
@@ -272,10 +277,13 @@ class MainNavigation extends React.Component {
                                     }
                                 }
                             },
-                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                            fill: {
+                                patternType: "solid",
+                                fgColor: {rgb: "FFF86B00"}
+                            }
                         },
                         {
-                            value: dust,
+                            value: this.state.dust,
                             style: {
                                 font: {
                                     bold: false
@@ -329,10 +337,13 @@ class MainNavigation extends React.Component {
                                     }
                                 }
                             },
-                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                            fill: {
+                                patternType: "solid",
+                                fgColor: {rgb: "FFF86B00"}
+                            }
                         },
                         {
-                            value: smoke,
+                            value: this.state.smoke,
                             style: {
                                 font: {
                                     bold: false
@@ -386,10 +397,13 @@ class MainNavigation extends React.Component {
                                     }
                                 }
                             },
-                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                            fill: {
+                                patternType: "solid",
+                                fgColor: {rgb: "FFF86B00"}
+                            }
                         },
                         {
-                            value: co,
+                            value: this.state.co,
                             style: {
                                 font: {
                                     bold: false
@@ -443,10 +457,13 @@ class MainNavigation extends React.Component {
                                     }
                                 }
                             },
-                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                            fill: {
+                                patternType: "solid",
+                                fgColor: {rgb: "FFF86B00"}
+                            }
                         },
                         {
-                            value: co2,
+                            value: this.state.co2,
                             style: {
                                 font: {
                                     bold: false
@@ -500,10 +517,13 @@ class MainNavigation extends React.Component {
                                     }
                                 }
                             },
-                            fill: {patternType: "solid", fgColor: {rgb: "FFF86B00"}}
+                            fill: {
+                                patternType: "solid",
+                                fgColor: {rgb: "FFF86B00"}
+                            }
                         },
                         {
-                            value: lpg,
+                            value: this.state.lpg,
                             style: {
                                 font: {
                                     bold: false
@@ -572,10 +592,14 @@ class MainNavigation extends React.Component {
                                         </button>
                                     </li>}
                                     {context.locationId && <li>
+                                        {!this.state.isLoaded && this.exportToExcelHandler()}
                                         <ExcelFile filename="metadata"
                                                    element={<button type="button" onClick={() => {
-                                                       this.exportToExcelHandler();
-                                                   }}>Convert To Excel</button>}>
+                                                       this.setState({
+                                                           isLoaded: false
+                                                       })
+                                                   }}
+                                                   >Convert To Excel</button>}>
                                             <ExcelSheet dataSet={multiDataSet} name="Metadata"/>
                                         </ExcelFile>
                                     </li>}
