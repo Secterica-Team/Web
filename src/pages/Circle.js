@@ -91,7 +91,7 @@ class ApexChart extends Component {
             series: [valueToPercent(this.props.value)],
             options: {
                 chart: {
-                    height: 90,
+                    height: 120,
                     type: 'radialBar',
                     toolbar: {
                         show: false,
@@ -166,7 +166,7 @@ class ApexChart extends Component {
                                 enabled: true,
                                 top: -3,
                                 left: 0,
-                                blur: 4,
+                                blur: 3,
                                 opacity: 0.35
                             }
                         },

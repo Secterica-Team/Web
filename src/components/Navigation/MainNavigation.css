@@ -37,7 +37,7 @@
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
-    font-size: 1.3020833333333333vw;
+    font-size: 1.313em;
     color: #5F7B88;
     text-align: center;
 }
@@ -47,11 +47,11 @@
     background: #0F1521;
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
-    height: 48px;
-    width: 17.7734375vw;
-    font-size: 1.3020833333333333vw;
+    height: 2.500em;
+    width: 13em;
+    font-size: 1.313em;
     color: #5F7B88;
-    border: 0.07rem solid #5F7B88;
+    border: 0.055em solid #5F7B88;
     border-radius: 32px;
     padding: 0.25rem 1rem;
     margin: 0 1rem;

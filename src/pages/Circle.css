@@ -7,8 +7,9 @@
 }
 .circle {
     background: rgba(173, 216, 230, 0);
-    border-radius: 50%;
-    width:100px;
+    border-radius: 100%;
+    width: 75px;
+    height: 80px;
     margin-right: 100px;
 }
 
